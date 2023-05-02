@@ -6,7 +6,7 @@ import java.sql.Statement;
 public class Employee_payroll {
 
     public static void main(String[] args) {
-        //UC3 :Ability to update the salary
+        //UC5 : Ability to retrieve all employees who have joined in a particular date range.
 
         try {
             //1.Load a driver
@@ -21,16 +21,15 @@ public class Employee_payroll {
             }
 
             //3.Write a Query
-            String query = "update employee_payroll set salary = 300000 where id = 2";
+            String query = "select * from employee_payroll where startDate between '2023-01-01' and '2023-03-01';";
 
-            //4.prepare a statement
+            //4.creating a statement
             Statement statement = connection.createStatement();
-            statement.execute(query);
-            ResultSet set =  statement.executeQuery("select * from employee_payroll");
 
-            System.out.println("...Inserted.");;
+            //5.Passing the query.
+            ResultSet set =  statement.executeQuery(query);
 
-            while (set.next()){   // Retrieve all data from employee_payroll table.
+            while (set.next()){   // Retrieve  data from employee_payroll table.
                 System.out.println("Id : "+set.getInt(1));
                 System.out.println("Name : "+set.getString(2));
                 System.out.println("Gender : "+set.getString(3));
